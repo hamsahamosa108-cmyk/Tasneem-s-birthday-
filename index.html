@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #fdf6ec;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .cats-header {
+            font-size: 32px;
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+        }
+
+        .birthday-card {
+            background: #ffffff;
+            border: 3px dashed #ffb703;
+            border-radius: 15px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(255, 183, 3, 0.15);
+        }
+
+        .birthday-card h1 {
+            font-size: 24px;
+            color: #d90429;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .btn {
+            background-color: #ffb703;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 183, 3, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #fb8500;
+            transform: translateY(-2px);
+        }
+
+        .game-section h2 {
+            font-size: 20px;
+            color: #fb8500;
+            margin-bottom: 20px;
+        }
+
+        .memory-box {
+            background: #fff8f0;
+            border: 1px solid #ffe5d9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .memory-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .memory-box input[type="file"] {
+            margin-bottom: 10px;
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .memory-box textarea {
+            width: 100%;
+            height: 65px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px;
+            resize: none;
+            font-size: 14px;
+        }
+
+        .wish-box {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .wish-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #d90429;
+        }
+
+        .wish-box input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ffb703;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .envelope-section {
+            background: #fff0f3;
+            border: 2px solid #ffccd5;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .envelope-section p {
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #9d0208;
+            font-size: 15px;
+        }
+
+        .secret-input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .secret-input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ff4d6d;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .error-msg {
+            color: #d90429;
+            font-size: 13px;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .final-letter {
+            background: #fff;
+            border: 3px solid #ffb703;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: right;
+            line-height: 1.8;
+            font-size: 16px;
+            color: #2b2b2b;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            max-height: 350px;
+            overflow-y: auto;
+            direction: rtl;
+        }
+
+        .reply-box {
+            margin-top: 20px;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .reply-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #9d0208;
+            font-size: 15px;
+        }
+
+        .reply-box textarea {
+            width: 100%;
+            height: 90px;
+            border: 2px solid #ffb703;
+            border-radius: 10px;
+            padding: 10px;
+            resize: none;
+            font-size: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Screen 1: Card & Orange Cats -->
+        <div id="screen-1">
+            <div class="cats-header">🐱🥳 🐱🥳 🐱🥳</div>
+            <div class="birthday-card">
+                <h1>Happy Birthday my fucking best person in my whole life ♥️🙏</h1>
+            </div>
+            <button class="btn" onclick="nextScreen(2)">Next ➡️</button>
+        </div>
+
+        <!-- Screen 2: Start Game -->
+        <div id="screen-2" class="hidden">
+            <div class="cats-header">🎮🐱✨</div>
+            <h2 style="margin-bottom: 25px; color: #fb8500;">Ready to play and remember our memories? 🤓😈</h2>
+            <button class="btn" onclick="nextScreen(3)">Start Game 🤓😈</button>
+        </div>
+
+        <!-- Screen 3: Game Section -->
+        <div id="screen-3" class="hidden game-section">
+            <h2>Select your favorite 4 pictures of us from your gallery and write what happened on each day 📸</h2>
+            
+            <div id="memories-container">
+                <div class="memory-box">
+                    <label>First Picture (Choose from Gallery):</label>
+                    <input type="file" accept="image/*">
+                    <textarea id="mem-1" placeholder="What happened on this day?..."></textarea>
+                </div>
+                <div class="memory-box">
+                    <label>Second Picture (Choose from Gallery):</label>
+                    <input type="file" accept="image/*">
+                    <textarea id="mem-2" placeholder="What happened on this day?..."></textarea>
+                </div>
+                <div class="memory-box">
+                    <label>Third Picture (Choose from Gallery):</label>
+                    <input type="file" accept="image/*">
+                    <textarea id="mem-3" placeholder="What happened on this day?..."></textarea>
+                </div>
+                <div class="memory-box">
+                    <label>Fourth Picture (Choose from Gallery):</label>
+                    <input type="file" accept="image/*">
+                    <textarea id="mem-4" placeholder="What happened on this day?..."></textarea>
+                </div>
+            </div>
+
+            <div class="wish-box">
+                <label>Write something you wish for me to do for you ✨:</label>
+                <input type="text" id="user-wish" placeholder="Type your wish here...">
+            </div>
+
+            <div class="envelope-section">
+                <p>💌 This letter will not open until you type the word you always used to say, and I used to get annoyed when you said it to anyone else!</p>
+                <div class="secret-input-group">
+                    <input type="text" id="secret-word" placeholder="Type the secret word...">
+                    <button class="btn" onclick="checkSecret()" style="padding: 10px 20px; font-size: 15px;">Open 🔓</button>
+                </div>
+                <div id="error-box" class="error-msg hidden">That's not correct, try again! 🤭</div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Final Letter & Reply & WhatsApp Submit -->
+        <div id="screen-4" class="hidden">
+            <div class="cats-header">🐈🧡 💌 🐈🧡</div>
+            <div class="final-letter">
+                بما انك وصلتي ل هنا فا حابه اجولك اني مبسوطه ان لسه في جوانا حته متكسرتش لسه في جزء مخليني اقعد القعده دي مخصوص عشانك مش عوزاكي تشيلي مني من اي موقف عملته دايقك اي مره حسستك ب شعور مقرف اي مره قفلت دماغي فيها زي العيال الصغيره عوزاكي تبقي كويسه و بجد بتمني ان السنه دي تعوضك عن قرف السنه الفاتت دي كلها وانا جمبك و معاكي و واثقه انك هتعدي ده انا عارفه انك كتير هتترددي تيجي كتير هتبقي مش واثقه فيا انك تجيلي اساسا وانا اسفه عشان وصلتك ل هنا مش عايزه اعرف انا عملت ايه ولا عايزه احاول اصلح حاجه باظت و صعب تتصلح بس عوزاكي تحاولي تسامحيني علي اي تعب سببتهولك اي اذي شوفتيه مني اي تصرف خلاكي متثقيش فيا اعرفي بس ان انا بجد بحبك و ان كل الدوشه ال بعملها حوالينا دي عشان بس خايفه نسكت اخسرك <br><br><strong>(هتعالج والله ) ♥️</strong>
+            </div>
+
+            <div class="reply-box">
+                <label>لو حابة تردي عليا أو تقولي لي أي حاجة، اكتبي ردك هنا 💬:</label>
+                <textarea id="user-final-reply" placeholder="اكتبي ردك هنا..."></textarea>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button onclick="sendToWhatsApp()" class="btn" style="background-color: #25d366;">Send answers to my WhatsApp 💬</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function nextScreen(screenNumber) {
+            document.querySelectorAll('.container > div').forEach(div => {
+                div.classList.add('hidden');
+            });
+            document.getElementById('screen-' + screenNumber).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function checkSecret() {
+            const secretInput = document.getElementById('secret-word').value.trim();
+            const errorBox = document.getElementById('error-box');
+            const correctWord = "الصغنن";
+
+            if (secretInput === correctWord) {
+                errorBox.classList.add('hidden');
+                nextScreen(4);
+            } else {
+                errorBox.classList.remove('hidden');
+            }
+        }
+
+        function sendToWhatsApp() {
+            const mem1 = document.getElementById('mem-1').value || "No answer";
+            const mem2 = document.getElementById('mem-2').value || "No answer";
+            const mem3 = document.getElementById('mem-3').value || "No answer";
+            const mem4 = document.getElementById('mem-4').value || "No answer";
+            const wish = document.getElementById('user-wish').value || "No answer";
+            const reply = document.getElementById('user-final-reply').value || "No reply written";
+
+            const myPhoneNumber = "201287339330";
+            const message = `✨ إجابات نيمو في الموقع:\n\n1️⃣ ذكرى الصورة الأولى: ${mem1}\n\n2️⃣ ذكرى الصورة الثانية: ${mem2}\n\n3️⃣ ذكرى الصورة الثالثة: ${mem3}\n\n4️⃣ ذكرى الصورة الرابعة: ${mem4}\n\n🎁 أمنيتها اللي طلبتها: ${wish}\n\n💌 ردها على رسالتك الأخيرة: ${reply}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
+ 
